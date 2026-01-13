@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Pet Store</title>
+</head>
+<body>
+    <h1>Welcome to Pet Store</h1>
+
+    <!-- Show Login button only if NOT logged in -->
+    <div th:if="${#authorization.expression('!isAuthenticated()')}">
+        <a th:href="@{/login}">
+            <button>Login</button>
+        </a>
+    </div>
+
+    <!-- Show Logout button if logged in -->
+    <div th:if="${#authorization.expression('isAuthenticated()')}">
+        <p>Logged in as: <span th:text="${#authentication.name}"></span></p>
+        <a th:href="@{/logout}">
+            <button>Logout</button>
+        </a>
+    </div>
+</body>
+</html>
